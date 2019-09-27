@@ -28,7 +28,7 @@ h3{
 }
 
 .answers-container{
-    border:1px solid black;
+    
     display:flex;
     height:296px;
     flex-wrap:wrap;
@@ -39,11 +39,7 @@ h3{
 }
 .correct{
     border:3px solid green;
-    
-    width:fit-content;
-    position: relative;
-    bottom:50px;
-    left:200px;
+
     color: green;
     
     
@@ -66,10 +62,7 @@ h3{
     .wrong{
         border:3px solid red;
         
-        width:fit-content;
-        position: relative;
-        bottom:50px;
-        left:200px;
+  
         color:black;
         
         
@@ -100,13 +93,26 @@ h3{
         width:60%;
     }
     .answers-container{
+    
+        display:flex;
+        height:147px;
+        flex-wrap:wrap;
         width:60%;
+        margin: 0 auto;
+        justify-content:space-beteween;
+      
+    
     }
-    .answers-container{
-    flex-wrap:wrap;
-    }
-    .answers{
+    .answer{
+        border:1px solid black;
         width:50%;
+        padding:2px;
+        
+    }
+    .correct-answer{
+        border:4px solid lightgreen;
+        width:50%;
+        padding:2px;
     }
     
 }
