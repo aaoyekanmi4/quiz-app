@@ -8,11 +8,168 @@
     <link href="main.css" rel="stylesheet">
 </head>
 <body>
+  <!--Start Quiz Section-->
+  Start Quiz
     <section class="start-quiz">
         <h1> The Sopranos Quiz</h1> 
         <br>
         <input type="submit" value="Start Quiz">
     </section>
+    <form>
+        <!--Question Screen-->
+        Question
+    <section class="quiz-content">
+                    
+        <p class="current">Current:</p>
+        <p class="number-corr">Number Correct:</p>
+        <h3 class="question"> Question</h3>
+                
+        <input type="submit" class="submit">
+     </section>
+           
+        <div class="answers-container">
+                    <div class="answer ">
+                            <input type="radio" name="answer" value="1">
+                            <br>
+                            <p>answer1</p>
+                    </div>
+                    <div class="answer">
+                            <input type="radio" name="answer" value="2">
+                            <p>answer2</p>
+                        </div>
+                        <div class="answer">
+                                <input type="radio" name="answer" value="3">
+                                <p>answer3</p>
+                            </div>
+                            <div class="answer">
+                                    <input type="radio" name="answer" value="4">
+                                    <p>answer4</p>
+                                </div>
+                                
+                    
+                </div>
+        
+          
+            </form>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+           <!--Correct answer Screen-->
+           Correct
+            <form>
+                    <section class="quiz-content">
+                            
+                        <p class="current">Current:</p>
+                        <p class="number-corr">Number Correct:</p>
+        
+                
+                        <h3 class="question"> Question</h3>
+                        
+                        <input type="submit" class="submit" value="Next Question">
+                    </section>
+                   
+                    <div class="answers-container">
+                            <div class="answer ">
+                                    <input type="radio" name="answer" value="1">
+                                    <br>
+                                    <p>answer1</p>
+                            </div>
+                            <div class="correct-answer right-choice">
+                                    <input type="radio" name="answer" value="2">
+                                    <p>answer2</p>
+                                    <span class="correct"> That's Correct!</span>
+                                    
+                                    
+
+
+                                </div>
+                                <div class="answer">
+                                        <input type="radio" name="answer" value="3">
+                                        <p>answer3</p>
+                                    </div>
+                                    <div class="answer">
+                                            <input type="radio" name="answer" value="4">
+                                            <p>answer4</p>
+                                        </div>
+                                        
+                            
+                        </div>
+                
+                  
+                    </form>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                       <!--Wrong answer Screen-->
+                       Incorrect
+                    <form>
+                            <section class="quiz-content">
+                                    
+                                <p class="current">Current:</p>
+                                <p class="number-corr">Number Correct:</p>
+                
+                        
+                                <h3 class="question"> Question</h3>
+                                
+                                <input type="submit" class="submit" value="Next Question">
+                            </section>
+                           
+                            <div class="answers-container">
+                                    <div class="correct-answer ">
+                                            <input type="radio" name="answer" value="1">
+                                            <br>
+                                            <p>answer1</p>
+                                            <span class="correct">This was the correct answer</span>
+                                    </div>
+                                    <div class="answer">
+                                            <input type="radio" name="answer" value="2">
+                                            <p>answer2</p>
+                                            <span class="wrong"> Sorry, that was incorrect</span>
+                                            
+                                            
+        
+        
+                                        </div>
+                                        <div class="answer">
+                                                <input type="radio" name="answer" value="3">
+                                                <p>answer3</p>
+                                            </div>
+                                            <div class="answer">
+                                                    <input type="radio" name="answer" value="4">
+                                                    <p>answer4</p>
+                                                </div>
+                                                
+                                    
+                                </div>
+                        
+                          
+                            </form>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                           <!--End Quiz Screen-->
+                           End
+
+                            <section class="end-quiz">
+                                    <h1> Thanks for Taking the Quiz</h1> 
+                                    <br>
+                                    <p class="end-message"> Better luck next time!</p>
+                                    <br>
+                                    <p>Take the quiz again!</p>
+                                    <input type="submit" value="Start Quiz">
+                                </section>
             
 </body>
 </html>
