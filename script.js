@@ -31,7 +31,7 @@ function displayQuestion(index =0, score=0){
     
     let answersHTMLArr = answers.map(answer => 
         `<div class="answer ">
-                <input type="radio" name="answer" value="1">
+                <input type="radio" name="answer" value="${answer}">
                 <br>
                 <p>${answer}</p>
         </div>`);
