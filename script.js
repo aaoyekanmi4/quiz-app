@@ -53,12 +53,38 @@ function displayQuestion(index =0, score=0){
  $(".quiz").html(questionHTML);
 }
 
-//Check to see if an answer is correct or incorrect with submit button pressed.
-function checkAnswer(){
-    //When submit button is clicked, get value of checked item and compare to correct answer.
+
+//Function handleSubmission. Handles submission of an answer to the question.
+function handleSubmission(){
     $(".quiz").on('click', ".submit", function(event) {
-        event.preventDefault();
-        
+        event.preventDefault();  
+
+        checkAnswer();
+
+        //check to see if quiz is over
+        let current = $('.quiz-content').data('question-index');
+        let finalIndex = QUIZ.length -1;
+        if (current === finalIndex){
+            endQuiz();
+        }
+        else {
+            nextQuestion();
+        }
+
+
+
+
+    });
+}
+
+
+
+
+
+
+
+//Check to see if an answer is correct or incorrect
+function checkAnswer(){      
         let checkedAnswer = $("input[name='answer']:checked").val();
         let index = $('.quiz-content').data('question-index');
         let score = $(".number-corr").data('score');
@@ -70,7 +96,7 @@ function checkAnswer(){
         else {
             incorrect();
         }
-    });
+  
     
 
 }
@@ -101,8 +127,10 @@ function incorrect(){
 }
 
 //Move to next question
-function changeQuestion(){
-    console.log("changeQuestion ran");
+function nextQuestion(){
+   
+
+    console.log("nextQuestion ran");
 
 }
 
@@ -114,7 +142,7 @@ function endQuiz(){
 //Run the quiz 
 function handleQuiz() {
  startQuiz();
- checkAnswer();
+ handleSubmission();
  
 }
 
