@@ -44,7 +44,7 @@ function displayQuestion(index =0, score=0){
     let questionHTML = `<form action="">
                             <section class="quiz-content" data-question-index="${index}" >
                                 <p class="current">Current:${currentQ} out of ${QUIZ.length}</p>
-                                <p class="number-corr">Number Correct:${score}</p>
+                                <p class="number-corr" data-score = "${score}" >Number Correct:${score}</p>
                                 <h3 class="question">${question}</h3>
                                 <input type="submit" class="submit">
                             </section><section class="answers-container">${answersHTML}</section></form>`
@@ -58,11 +58,14 @@ function checkAnswer(){
     //When submit button is clicked, get value of checked item and compare to correct answer.
     $(".quiz").on('click', ".submit", function(event) {
         event.preventDefault();
+        
         let checkedAnswer = $("input[name='answer']:checked").val();
         let index = $('.quiz-content').data('question-index');
+        let score = $(".number-corr").data('score');
+    
         let correctAnswer = QUIZ[index].correct;
         if (checkedAnswer === correctAnswer){
-            correct();
+            correct(score);
         }
         else {
             incorrect();
@@ -73,12 +76,16 @@ function checkAnswer(){
 }
 
 //Code to perform if the answer was correct 
-function correct() {
+function correct(score){
     //Add class correct-answer to highlight answer in green
     $("input[name='answer']:checked").closest('div').addClass('correct-answer');
     //Add text beside input button of answer to show it was correct
     $("input[name='answer']:checked").after("<span class='correct'> That's Correct!</span>")
+    score++
+$(".number-corr").text(`Number Correct: ${score}`)
+$(".number-corr").data('score', score);
 }
+
 
 //Code to perform if the answer was incorrect
 function incorrect(){
