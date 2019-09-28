@@ -62,10 +62,10 @@ function checkAnswer(){
         let index = $('.quiz-content').data('question-index');
         let correctAnswer = QUIZ[index].correct;
         if (checkedAnswer === correctAnswer){
-            alert("You are correct!");
+            correct();
         }
         else {
-            alert("Sorry, that's incorrect");
+            incorrect();
         }
     });
     
@@ -74,12 +74,22 @@ function checkAnswer(){
 
 //Code to perform if the answer was correct 
 function correct() {
-    console.log("correct ran");
+    //Add class correct-answer to highlight answer in green
+    $("input[name='answer']:checked").closest('div').addClass('correct-answer');
+    //Add text beside input button of answer to show it was correct
+    $("input[name='answer']:checked").after("<span class='correct'> That's Correct!</span>")
 }
 
 //Code to perform if the answer was incorrect
 function incorrect(){
-    console.log("incorrect ran");
+    //Add text by wrong answer radio button
+    $("input[name='answer']:checked").after("<span class='wrong'> Sorry, that was incorrect</span>");
+    //Get correct answer
+    let index = $('.quiz-content').data('question-index');
+    let correctAnswer = QUIZ[index].correct;
+    //Highlight correct answer
+    $(`input[name='answer'][value='${correctAnswer}']`).closest('div').addClass('correct-answer');
+    $(`input[name='answer'][value='${correctAnswer}']`).after(" <span class='correct'>This is the answer</span>");
 
 }
 
