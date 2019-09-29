@@ -14,7 +14,7 @@ const QUIZ = [{question: "What was the name of Tony's yacht?",
 
 //Start Quiz by clicking Start button 
 function startQuiz(){
-    $(".start").click(function() {
+    $(".quiz").on('click', '.start', function() {
         $(this).parent().hide();
         displayQuestion();
     });
