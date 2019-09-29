@@ -46,7 +46,7 @@ function displayQuestion(index =0, score=0){
                                 <p class="current">Current:${currentQ} out of ${QUIZ.length}</p>
                                 <p class="number-corr" data-score = "${score}" >Number Correct:${score}</p>
                                 <h3 class="question">${question}</h3>
-                                <input type="submit" class="submit">
+                                <input type="submit" class="submit ">
                             </section><section class="answers-container">${answersHTML}</section></form>`
     
                
@@ -62,12 +62,18 @@ function handleSubmission(){
         checkAnswer();
 
         //check to see if quiz is over
+
+
         let current = $('.quiz-content').data('question-index');
         let finalIndex = QUIZ.length -1;
+
         if (current === finalIndex){
+            $(".submit").attr('value', "Results").addClass("end");
             endQuiz();
         }
         else {
+            $(".submit").attr('value', "Next").addClass("next");
+
             nextQuestion();
         }
 
@@ -128,9 +134,13 @@ function incorrect(){
 
 //Move to next question
 function nextQuestion(){
-   
-
+    $(".quiz").on('click', ".next", function(event) {
+    let index = $('.quiz-content').data('question-index');
+    index++;
+    let score = $(".number-corr").data('score');
+    displayQuestion(index, score);
     console.log("nextQuestion ran");
+    });
 
 }
 
