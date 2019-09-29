@@ -46,7 +46,7 @@ function displayQuestion(index =0, score=0){
                                 <p class="current">Current:${currentQ} out of ${QUIZ.length}</p>
                                 <p class="number-corr" data-score = "${score}" >Number Correct:${score}</p>
                                 <h3 class="question">${question}</h3>
-                                <input type="submit" class="submit ">
+                                <input type="submit" class="submit answer-button">
                             </section><section class="answers-container">${answersHTML}</section></form>`
     
                
@@ -68,11 +68,11 @@ function handleSubmission(){
         let finalIndex = QUIZ.length -1;
 
         if (current === finalIndex){
-            $(".submit").attr('value', "Results").addClass("end");
+            $(".answer-button").attr('value', "Results").addClass("end").removeClass("submit");
             endQuiz();
         }
         else {
-            $(".submit").attr('value', "Next").addClass("next");
+            $(".answer-button").attr('value', "Next").addClass("next").removeClass("submit");
 
             nextQuestion();
         }
@@ -146,6 +146,7 @@ function nextQuestion(){
 
 //End quiz if last question
 function endQuiz(){
+
     console.log("endQuiz ran");
 }
 
