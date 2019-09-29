@@ -146,8 +146,16 @@ function nextQuestion(){
 
 //End quiz if last question
 function endQuiz(){
-
-    console.log("endQuiz ran");
+    $(".quiz").on('click', ".end", function(event) {
+    $(".quiz").html(`<section class="end-quiz">
+    <h1> Thanks for Taking the Quiz</h1> 
+    <br>
+    <p class="end-message"> Better luck next time!</p>
+    <br>
+    <p>Take the quiz again!</p>
+    <button class="start">Start Quiz</button>
+</section>`);
+    });
 }
 
 //Run the quiz 
