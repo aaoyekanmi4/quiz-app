@@ -15,7 +15,7 @@ const QUIZ = [{
               topic: "Array.prototype.concat()",
               gotRight: false},
             
-              {question: "Which method can I use to add an element from the front of the array?", 
+              {question: "Which method can I use to add an element tothe front of the array?", 
               
               arr: "let arr = [3,4,5,6,7]",
               answers: ["arr.push(2);", "arr.shift(2);", "arr.pop(2);", "arr.unshift(2);"], 
@@ -24,7 +24,7 @@ const QUIZ = [{
               topic: "Array.prototype.unshift()",
               gotRight: false},
 
-              {question: "Find the expression where bool = true.", 
+              {question: "Find the expression where bool === true.", 
               
               arr: "const arr = [1,2,3,4,5]",
               answers: [
@@ -90,7 +90,7 @@ console.log(index)
     
     let answersHTMLArr = answers.map(answer => 
         `<div class="answer ">
-                <input type="radio" name="answer"  value="${answer}">
+                <input type="radio" name="answer"  value="${answer}" required>
                 <br>
                 <p>${answer}</p>
         </div>`);
@@ -106,8 +106,8 @@ console.log(index)
                                 
                                 <h3 class="question">${question}</h3>
                                 <p class="arr-box">${arr}</p>
-                                <input type="submit" class="submit answer-button">
-                                <input type="submit" class="end">
+                                <button class="answer-button">Submit</button>
+                                <input type="submit" class="end" name="results">
                             </section><section class="answers-container">${answersHTML}</section>`
     
                
@@ -123,8 +123,12 @@ console.log(index)
 
 function checkIfDone() {
     event.preventDefault();  
-
-    checkAnswer();
+    let checkedAnswer = $("input[name='answer']:checked").val();
+    if (!checkedAnswer){
+            alert("Please select an option");
+        }
+        else{
+    checkAnswer(checkedAnswer);
 
     //check to see if quiz is over
 
@@ -143,14 +147,15 @@ function checkIfDone() {
 
         nextQuestion();
     }
-
+        }
 }
 
 
 
 //Check to see if an answer is correct or incorrect
-function checkAnswer(){      
-        let checkedAnswer = $("input[name='answer']:checked").val();
+function checkAnswer(checkedAnswer){      
+    
+ 
         let index = $('.quiz-content').data('question-index');
         let score = $(".number-corr").data('score');
     
@@ -162,9 +167,9 @@ function checkAnswer(){
             incorrect();
         }
   
-    
+        }
 
-}
+
 
 //Code to perform if the answer was correct 
 function correct(score){
