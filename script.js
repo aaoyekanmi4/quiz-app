@@ -253,7 +253,7 @@ function end() {
     <ul class= "review">${links}</review>
     <br>
     <p>Take the quiz again!</p>
-    <button class="start">Start Quiz</button>
+    <p class=".start-align"><button class="start">Start Quiz</button><p>
 </section>`);
     };
 //Run the quiz 

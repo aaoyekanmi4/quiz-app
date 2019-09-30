@@ -23,11 +23,16 @@ h1 {
 
 .review {
     list-style-type: none;
+    padding-left:0px;
 }
 .end-quiz, .start-quiz, .answers-container, .answer,.quiz-content{
     background-color: white;
     box-shadow:10px 10px 10px grey;  
 
+}
+
+.start-align {
+    text-align: center;
 }
 .start-quiz, .end-quiz{
     border: 1px solid black;
