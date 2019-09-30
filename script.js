@@ -1,11 +1,57 @@
-const QUIZ = [{question: "What was the name of Tony's yacht?", 
-              answers: ["Fugazi", "Stugots", "Stunad", "WiseGuys"], 
-              correct: "Stugots"}, 
+const QUIZ = [{
+              question: "Which iterative method returns an array with values of arr greater than 6?", 
+              arr: "const arr = [5,6,7,8,9, 10]",
+              answers: ["arr.filter(num => num > 6);", "arr.find(num => num > 6);", "arr.reduce(num => num > 6);", "arr.map(num => num > 6);"], 
+              correct: "arr.filter(num => num > 6);", 
+              documentation:"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter",
+              topic: "Array.prototype.filter"},
               
-              {question: "What is the name of the final episode?", 
-              answers: ["The Diner", "Calling All Cars", "Pine Barrens", "Made in America"], 
-              correct: "Made in America"} 
-              ]
+              {question: "Which method will NOT mutate arr?", 
+              arr: "let arr = ['Pochahontas','The Little Mermaid',Sleeping Beauty','Snow White']",
+              answers: ["arr.pop();", "arr.shift();", "arr.push('Mulan');", "arr.concat('Mulan');"], 
+              correct: "arr.concat('Mulan');",
+              documentation:"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat",
+              topic: "Array.prototype.concat()"},
+            
+              {question: "Which method can I use to add an element from the front of the array?", 
+              
+              arr: "let arr = ['triplets','quadruplets','quintuplets','sextuplets']",
+              answers: ["arr.push('twins');", "arr.shift('twins');", "arr.pop('twins');", "arr.unshift('twins');"], 
+              correct: "arr.unshift('twins');",
+              documentation:"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift",
+              topic: "Array.prototype.unshift()"},
+
+              {question: "Find the expression where bool = true.", 
+              
+              arr: "const arr = [1,2,3,4,5]",
+              answers: [
+                  "let bool = arr.filter(num => num < 6);", 
+                  "let bool = arr.forEach(num => num === 5);", 
+                  "let bool = arr.some(num => num > 2);", 
+                  "let bool = arr.every(num => num > 2);"
+                ], 
+              correct: "let bool = arr.some(num => num > 2);",
+              documentation:"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some",
+              topic: "Array.prototype.some()"},
+
+              {question: "How can I console.log() the name of each cow?", 
+              
+              arr: "const milkcows = ['Daisy','Mary','Bertha','Sue']",
+              answers: [
+                  "for (cow in milkcows){console.log(cow)}", 
+                  "for (cow in array){console.log(cow)}", 
+                  "for (milkcow of farm){console.log(cow)}", 
+                  "for (cow of milkcows){console.log(cow)}", 
+                ], 
+              correct: "for (cow of milkcows){console.log(cow)}",
+              documentation:"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some",
+              topic: "Array.prototype.some()"},
+              
+
+            
+            
+            
+            ];
 
 
 
