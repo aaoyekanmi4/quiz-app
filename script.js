@@ -1,4 +1,8 @@
 
+
+
+
+
 //Start Quiz by clicking Start button 
 function startQuiz(){
     $('.start').click(function () {
@@ -10,27 +14,32 @@ function startQuiz(){
     displayQuestion();
  });
 }
-
-
-
+//generate answerHTML
+function generateAnswers (answers){
+    let answersHTMLArr = answers.map(answer => 
+    `<li class="answer ">
+        <input type="radio" name="answer"  value="${answer}" required>
+        <br>
+        <p>${answer}</p>
+    </li>`);
+    let answersHTML = answersHTMLArr.join('');
+    return answersHTML;
+}
 //Render question to the html page
 function displayQuestion(index =0, score=0){
+    //From QUIZ.js, get question to ask, answers, example array, and current question
     let question = QUIZ[index].question;
     let answers = QUIZ[index].answers;
+    let answersHTML = generateAnswers(answers);
     let arr = QUIZ[index].arr;
+    let currentQ = index + 1;
    
     $(".quiz").off('click', ".next", goToNext );
     $("form").on('click', ".answer-button", checkIfDone );
-console.log(index)
-    let currentQ = index + 1;
+
     
-    let answersHTMLArr = answers.map(answer => 
-        `<div class="answer ">
-                <input type="radio" name="answer"  value="${answer}" required>
-                <br>
-                <p>${answer}</p>
-        </div>`);
-    let answersHTML = answersHTMLArr.join('');
+    
+    
 
 
 
@@ -46,7 +55,7 @@ console.log(index)
                                 <p class="end"><button class="end">View Results</button></p>
                                 <button class="answer-button">Submit</button>
                                 
-                            </section><section class="answers-container">${answersHTML}</section>`
+                            </section><ul class="answers-container">${answersHTML}</ul>`
     
                
  $("form").html(questionHTML);
