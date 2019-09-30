@@ -14,6 +14,13 @@
     
 }
 
+.next{
+    display: none;
+    color: steelblue;
+    background:transparent;
+    font-size: 22px;
+}
+
 .quiz-content {
     border: 1px solid black;
     width: 100%;

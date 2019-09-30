@@ -4,14 +4,16 @@ const QUIZ = [{
               answers: ["arr.filter(num => num > 6);", "arr.find(num => num > 6);", "arr.reduce(num => num > 6);", "arr.map(num => num > 6);"], 
               correct: "arr.filter(num => num > 6);", 
               documentation:"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter",
-              topic: "Array.prototype.filter"},
+              topic: "Array.prototype.filter",
+              gotRight: false},
               
               {question: "Which method will NOT mutate arr?", 
-              arr: "let arr = ['Pochahontas','The Little Mermaid',Sleeping Beauty','Snow White']",
-              answers: ["arr.pop();", "arr.shift();", "arr.push('Mulan');", "arr.concat('Mulan');"], 
-              correct: "arr.concat('Mulan');",
+              arr: "let arr = [11,12,13,14,15]",
+              answers: ["arr.pop();", "arr.shift();", "arr.push(16);", "arr.concat(16);"], 
+              correct: "arr.concat(16);",
               documentation:"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat",
-              topic: "Array.prototype.concat()"},
+              topic: "Array.prototype.concat()",
+              gotRight: false},
             
               {question: "Which method can I use to add an element from the front of the array?", 
               
@@ -19,7 +21,8 @@ const QUIZ = [{
               answers: ["arr.push('twins');", "arr.shift('twins');", "arr.pop('twins');", "arr.unshift('twins');"], 
               correct: "arr.unshift('twins');",
               documentation:"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift",
-              topic: "Array.prototype.unshift()"},
+              topic: "Array.prototype.unshift()",
+              gotRight: false},
 
               {question: "Find the expression where bool = true.", 
               
@@ -32,7 +35,8 @@ const QUIZ = [{
                 ], 
               correct: "let bool = arr.some(num => num > 2);",
               documentation:"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some",
-              topic: "Array.prototype.some()"},
+              topic: "Array.prototype.some()",
+              gotRight: false},
 
               {question: "How can I console.log() the name of each cow?", 
               
@@ -45,7 +49,8 @@ const QUIZ = [{
                 ], 
               correct: "for (cow of milkcows){console.log(cow)}",
               documentation:"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some",
-              topic: "Array.prototype.some()"},
+              topic: "Array.prototype.some()", 
+              gotRight: false},
               
 
             
@@ -73,8 +78,9 @@ function startQuiz(){
 function displayQuestion(index =0, score=0){
     let question = QUIZ[index].question;
     let answers = QUIZ[index].answers;
-    let id = index;
-
+    $(".quiz").off('click', ".next", goToNext );
+    $("form").on('click', ".answer-button", checkIfDone );
+console.log(index)
     let currentQ = index + 1;
     
     let answersHTMLArr = answers.map(answer => 
@@ -87,51 +93,50 @@ function displayQuestion(index =0, score=0){
 
 
 
-    let questionHTML = `<form action="">
+    let questionHTML = `
                             <section class="quiz-content" data-question-index="${index}" >
                                 <p class="current">Current:${currentQ} out of ${QUIZ.length}</p>
                                 <p class="number-corr" data-score = "${score}" >Number Correct:${score}</p>
+                                <button class="next">Next</button>
                                 <h3 class="question">${question}</h3>
                                 <input type="submit" class="submit answer-button">
-                            </section><section class="answers-container">${answersHTML}</section></form>`
+                            </section><section class="answers-container">${answersHTML}</section>`
     
                
- $(".quiz").html(questionHTML);
-}
-
-
-//Function handleSubmission. Handles submission of an answer to the question.
-function handleSubmission(){
-    $(".quiz").on('click', ".submit", function(event) {
-        event.preventDefault();  
-
-        checkAnswer();
-
-        //check to see if quiz is over
-
-
-        let current = $('.quiz-content').data('question-index');
-        let finalIndex = QUIZ.length -1;
-
-        if (current === finalIndex){
-            $(".answer-button").attr('value', "Results").addClass("end").removeClass("submit");
-            endQuiz();
-        }
-        else {
-            $(".answer-button").attr('value', "Next").addClass("next").removeClass("submit");
-
-            nextQuestion();
-        }
-
-
-
-
-    });
+ $("form").html(questionHTML);
 }
 
 
 
+    
 
+
+
+
+function checkIfDone() {
+    event.preventDefault();  
+
+    checkAnswer();
+
+    //check to see if quiz is over
+
+
+    let current = $('.quiz-content').data('question-index');
+    let finalIndex = QUIZ.length -1;
+
+    if (current === finalIndex){
+        $(".answer-button").hide();
+
+        endQuiz();
+    }
+    else {
+        $(".answer-button").hide();
+        $(".next").show();
+
+        nextQuestion();
+    }
+
+}
 
 
 
@@ -158,7 +163,7 @@ function correct(score){
     //Add class correct-answer to highlight answer in green
     $("input[name='answer']:checked").closest('div').addClass('correct-answer');
     //Add text beside input button of answer to show it was correct
-    $("input[name='answer']:checked").after("<span class='correct'> That's Correct!</span>")
+    $("input[name='answer']:checked").after("<span class='correct'>Correct!</span>")
     score++
 $(".number-corr").text(`Number Correct: ${score}`)
 $(".number-corr").data('score', score);
@@ -180,15 +185,20 @@ function incorrect(){
 
 //Move to next question
 function nextQuestion(){
-    $(".quiz").on('click', ".next", function(event) {
-    let index = $('.quiz-content').data('question-index');
-    index++;
-    let score = $(".number-corr").data('score');
-    displayQuestion(index, score);
-    console.log("nextQuestion ran");
-    });
+    $(".quiz").on('click', ".next", goToNext );
 
 }
+
+function goToNext() {
+    let index = $('.quiz-content').data('question-index');
+    index ++;
+    let score = $(".number-corr").data('score');
+    $(".next").hide();
+    $("form").off('click', ".answer-button", checkIfDone);
+    displayQuestion(index, score);
+   
+    console.log("nextQuestion ran");
+    }
 
 //End quiz if last question
 function endQuiz(){
@@ -207,8 +217,9 @@ function endQuiz(){
 //Run the quiz 
 function handleQuiz() {
  startQuiz();
- handleSubmission();
+
  
 }
 
 $(handleQuiz);
+
