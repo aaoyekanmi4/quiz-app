@@ -15,7 +15,7 @@ const QUIZ = [{
               topic: "Array.prototype.concat()",
               gotRight: false},
             
-              {question: "Which method can I use to add an element tothe front of the array?", 
+              {question: "Which method can I use to add an element to the front of the array?", 
               
               arr: "let arr = [3,4,5,6,7]",
               answers: ["arr.push(2);", "arr.shift(2);", "arr.pop(2);", "arr.unshift(2);"], 
@@ -100,14 +100,16 @@ console.log(index)
 
     let questionHTML = `
                             <section class="quiz-content" data-question-index="${index}" >
-                            <button class="next">Next</button>
+                            <button class="next">Next <i class="fas fa-arrow-alt-circle-right"></i>
+                            </button>
                                 <p class="current">Current:${currentQ} out of ${QUIZ.length}</p>
                                 <p class="number-corr" data-score = "${score}" >Number Correct:${score}</p>
                                 
                                 <h3 class="question">${question}</h3>
                                 <p class="arr-box">${arr}</p>
+                                <p class="end"><button class="end">View Results</button></p>
                                 <button class="answer-button">Submit</button>
-                                <input type="submit" class="end" name="results">
+                                
                             </section><section class="answers-container">${answersHTML}</section>`
     
                
