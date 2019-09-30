@@ -10,12 +10,14 @@ function startQuiz(){
     QUIZ.forEach(question => question.gotRight = false);
     //Hide .start-quiz section or .end-quiz section
     $(this).parent().hide();
+   
     //Show the first question
     displayQuestion();
  });
 }
-//generate answerHTML
-function generateAnswers (answers){
+
+//Generate HTML list items out of answers and return the HTML string
+function generateAnswersHTML (answers){
     let answersHTMLArr = answers.map(answer => 
     `<li class="answer ">
         <input type="radio" name="answer"  value="${answer}" required>
@@ -25,40 +27,43 @@ function generateAnswers (answers){
     let answersHTML = answersHTMLArr.join('');
     return answersHTML;
 }
+
+function generateQuestionsHTML(index, currentQ, score, question, arr, answersHTML){
+    let questionHTML = `
+    <section class="quiz-content" data-question-index="${index}" >
+        <button class="next">Next <i class="fas fa-arrow-alt-circle-right"></i>
+        </button>
+        <p class="current">Current:${currentQ} out of ${QUIZ.length}</p>
+        <p class="number-corr" data-score = "${score}" >Number Correct:${score}</p>
+        
+        <h3 class="question">${question}</h3>
+        <p class="arr-box">${arr}</p>
+        <p class="end"><button class="end">View Results</button></p>
+        <button class="answer-button">Submit</button>
+        
+    </section><ul class="answers-container">${answersHTML}</ul>`
+    return questionHTML;
+}
+
 //Render question to the html page
 function displayQuestion(index =0, score=0){
-    //From QUIZ.js, get question to ask, answers, example array, and current question
-    let question = QUIZ[index].question;
-    let answers = QUIZ[index].answers;
-    let answersHTML = generateAnswers(answers);
-    let arr = QUIZ[index].arr;
-    let currentQ = index + 1;
-   
+    //Turn off click listener for next question
     $(".quiz").off('click', ".next", goToNext );
+    //Turn on click listener for submitting an answer
     $("form").on('click', ".answer-button", checkIfDone );
-
+       
+    //From QUIZ.js, get question to ask, answers, example array, and current question  
+    let answers = QUIZ[index].answers;
+    let answersHTML = generateAnswersHTML(answers);
+    let arr = QUIZ[index].arr;
+    let question = QUIZ[index].question;
+    let currentQ = index + 1;
     
-    
-    
-
-
-
-    let questionHTML = `
-                            <section class="quiz-content" data-question-index="${index}" >
-                            <button class="next">Next <i class="fas fa-arrow-alt-circle-right"></i>
-                            </button>
-                                <p class="current">Current:${currentQ} out of ${QUIZ.length}</p>
-                                <p class="number-corr" data-score = "${score}" >Number Correct:${score}</p>
-                                
-                                <h3 class="question">${question}</h3>
-                                <p class="arr-box">${arr}</p>
-                                <p class="end"><button class="end">View Results</button></p>
-                                <button class="answer-button">Submit</button>
-                                
-                            </section><ul class="answers-container">${answersHTML}</ul>`
-    
+    //Use all variables make a question element and append to page
+    let questionHTML = generateQuestionsHTML(index, currentQ, score, question, arr, answersHTML);
+    $("form").html(questionHTML);
                
- $("form").html(questionHTML);
+ 
 }
 
 
