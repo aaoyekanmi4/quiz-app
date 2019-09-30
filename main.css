@@ -1,7 +1,15 @@
 * {
     box-sizing: border-box;
 }
-
+.arr-box{
+    border:1px solid black;
+    margin: 0 auto; 
+    width:fit-content;
+    padding:1px;
+    
+    
+    
+}
 .start-quiz, .end-quiz{
     border: 1px solid black;
     width: 100%;
@@ -13,12 +21,16 @@
     text-align:center;
     
 }
+.end{
+    display: none;
+}
 
 .next{
     display: none;
     color: steelblue;
     background:transparent;
     font-size: 22px;
+    float:right;
 }
 
 .quiz-content {

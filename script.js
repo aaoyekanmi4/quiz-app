@@ -17,9 +17,9 @@ const QUIZ = [{
             
               {question: "Which method can I use to add an element from the front of the array?", 
               
-              arr: "let arr = ['triplets','quadruplets','quintuplets','sextuplets']",
-              answers: ["arr.push('twins');", "arr.shift('twins');", "arr.pop('twins');", "arr.unshift('twins');"], 
-              correct: "arr.unshift('twins');",
+              arr: "let arr = [3,4,5,6,7]",
+              answers: ["arr.push(2);", "arr.shift(2);", "arr.pop(2);", "arr.unshift(2);"], 
+              correct: "arr.unshift(2);",
               documentation:"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift",
               topic: "Array.prototype.unshift()",
               gotRight: false},
@@ -65,12 +65,15 @@ const QUIZ = [{
 
 //Start Quiz by clicking Start button 
 function startQuiz(){
-    $(".quiz").on('click', '.start', function() {
-        $(this).parent().hide();
-        displayQuestion();
-    });
+    $("form").off('click', ".end", end)
+    $(".quiz").on('click', '.start', start);
+  
    
 }
+function start () {
+    $(this).parent().hide();
+    displayQuestion();
+};
 
 
 
@@ -78,6 +81,8 @@ function startQuiz(){
 function displayQuestion(index =0, score=0){
     let question = QUIZ[index].question;
     let answers = QUIZ[index].answers;
+    let arr = QUIZ[index].arr;
+    $(".quiz").off('click', '.start', start);
     $(".quiz").off('click', ".next", goToNext );
     $("form").on('click', ".answer-button", checkIfDone );
 console.log(index)
@@ -95,11 +100,14 @@ console.log(index)
 
     let questionHTML = `
                             <section class="quiz-content" data-question-index="${index}" >
+                            <button class="next">Next</button>
                                 <p class="current">Current:${currentQ} out of ${QUIZ.length}</p>
                                 <p class="number-corr" data-score = "${score}" >Number Correct:${score}</p>
-                                <button class="next">Next</button>
+                                
                                 <h3 class="question">${question}</h3>
+                                <p class="arr-box">${arr}</p>
                                 <input type="submit" class="submit answer-button">
+                                <input type="submit" class="end">
                             </section><section class="answers-container">${answersHTML}</section>`
     
                
@@ -126,7 +134,7 @@ function checkIfDone() {
 
     if (current === finalIndex){
         $(".answer-button").hide();
-
+         $(".end").show();
         endQuiz();
     }
     else {
@@ -202,8 +210,10 @@ function goToNext() {
 
 //End quiz if last question
 function endQuiz(){
-    $(".quiz").on('click', ".end", function(event) {
-    $(".quiz").html(`<section class="end-quiz">
+    $(".quiz").on('click', ".end", end)
+}
+function end() {
+    $("form").html(`<section class="end-quiz">
     <h1> Thanks for Taking the Quiz</h1> 
     <br>
     <p class="end-message"> Better luck next time!</p>
@@ -211,9 +221,7 @@ function endQuiz(){
     <p>Take the quiz again!</p>
     <button class="start">Start Quiz</button>
 </section>`);
-    });
-}
-
+    };
 //Run the quiz 
 function handleQuiz() {
  startQuiz();
