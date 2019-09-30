@@ -48,9 +48,11 @@ const QUIZ = [{
                   "for (cow of milkcows){console.log(cow)}", 
                 ], 
               correct: "for (cow of milkcows){console.log(cow)}",
-              documentation:"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some",
-              topic: "Array.prototype.some()", 
-              gotRight: false},
+              documentation:"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of",
+              topic: "for ...of", 
+              gotRight: false,
+              endScore:0}
+            
               
 
             
@@ -71,6 +73,7 @@ function startQuiz(){
    
 }
 function start () {
+    QUIZ.forEach(question => question.gotRight = false);
     $(this).parent().hide();
     displayQuestion();
 };
@@ -136,9 +139,11 @@ function checkIfDone() {
 
 
     let current = $('.quiz-content').data('question-index');
+    let score = $(".number-corr").data('score');
     let finalIndex = QUIZ.length -1;
 
     if (current === finalIndex){
+       QUIZ[current].endScore = score;
         $(".answer-button").hide();
          $(".end").show();
         endQuiz();
@@ -162,7 +167,9 @@ function checkAnswer(checkedAnswer){
         let score = $(".number-corr").data('score');
     
         let correctAnswer = QUIZ[index].correct;
+
         if (checkedAnswer === correctAnswer){
+            QUIZ[index].gotRight = true;
             correct(score);
         }
         else {
@@ -220,10 +227,30 @@ function endQuiz(){
     $(".quiz").on('click', ".end", end)
 }
 function end() {
+    let links = "";
+   let score =  QUIZ[QUIZ.length-1].endScore;
+   let endMessage;
+    if (score ===5){
+         endMessage = "Great Job! You got them all right!"
+    }
+    else if (score >=3){
+        endMessage = "Good Job. You didn't miss very many:"
+    }
+    else {
+        endMessage = "Here are some topics to review:"
+    }
+    for (question of QUIZ) {
+        if (question.gotRight ===false){
+      links += `<li class="review-topic"><a href='${question.documentation}'>${question.topic}</a><li>`;
+    }
+}
+    //let links = listOfLinks.join();
     $("form").html(`<section class="end-quiz">
     <h1> Thanks for Taking the Quiz</h1> 
     <br>
-    <p class="end-message"> Better luck next time!</p>
+    <p class="show-score">Your Score: ${score}/${QUIZ.length}</p>
+    <p class="end-message">${endMessage}</p>
+    <ul class= "review">${links}</review>
     <br>
     <p>Take the quiz again!</p>
     <button class="start">Start Quiz</button>

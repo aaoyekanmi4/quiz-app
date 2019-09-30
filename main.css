@@ -20,6 +20,10 @@ h1 {
     margin-top:20px;
     margin-bottom:10px;
 }
+
+.review {
+    list-style-type: none;
+}
 .end-quiz, .start-quiz, .answers-container, .answer,.quiz-content{
     background-color: white;
     box-shadow:10px 10px 10px grey;  
