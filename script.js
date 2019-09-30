@@ -1,14 +1,15 @@
 
 //Start Quiz by clicking Start button 
 function startQuiz(){
-    $('.start').click(function (event) {
+    $('.start').click(function () {
     //Change any previously correct answers from true to false
     QUIZ.forEach(question => question.gotRight = false);
     //Hide .start-quiz section or .end-quiz section
     $(this).parent().hide();
     //Show the first question
     displayQuestion();
-});
+ });
+}
 
 
 
