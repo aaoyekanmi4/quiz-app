@@ -15,9 +15,10 @@ function startQuiz(){
 function generateAnswersHTML (answers){
     let answersHTMLArr = answers.map(answer => 
     `<li class="answer ">
-        <input type="radio" name="answer"  value="${answer}" required>
+        <input type="radio" name="answer"  id ="${answer}" value="${answer}" required>
         <br>
-        <p>${answer}</p>
+        <br>
+        <label for="${answer}">${answer}</p>
     </li>`);
     let answersHTML = answersHTMLArr.join('');
     return answersHTML;
@@ -172,7 +173,14 @@ function nextQuestion(){
 
 }
 
-function generateEndHtml(score, endMessage, links){
+function generateEndHtml(score, endMessage){
+      //Generate list of links for user to view for questions missed
+      let links = "";
+      for (question of QUIZ) {
+          if (question.gotRight ===false){
+        links += `<li class="review-topic"><a target ="_blank" href='${question.documentation}'>${question.topic}</a><li>`;
+      }
+     }
     let endHTML = `<section class="end-quiz">
         <h1> Thanks for Taking the Quiz</h1> 
         <br>
@@ -187,6 +195,7 @@ function generateEndHtml(score, endMessage, links){
 
 }
 
+//Add data to ending message to display to user. Allow them to start again
 function end() {
     //Get score to display
    let score =  QUIZ[QUIZ.length-1].endScore;
@@ -204,15 +213,9 @@ function end() {
         endMessage = "Here are some topics to review:"
     }
     
-    //Generate list of links to look over for questions missed
-    let links = "";
-    for (question of QUIZ) {
-        if (question.gotRight ===false){
-      links += `<li class="review-topic"><a href='${question.documentation}'>${question.topic}</a><li>`;
-    }
-   }
+  
    //Generate ending screen HTML using helper function
-   let endHTML = generateEndHtml(score, endMessage, links);
+   let endHTML = generateEndHtml(score, endMessage);
    //Append the HTML to the page
     $("form").html(endHTML);
     
@@ -228,7 +231,8 @@ function endQuiz(){
 //Run the quiz 
 function handleQuiz() {
  startQuiz();
-
+ endQuiz();
+ nextQuestion();
  
 }
 
