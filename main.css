@@ -125,11 +125,12 @@ h3{
 }
 .correct{
     border:3px solid green;
-    padding:0px;
-    margin:0px;
+    
     background-color: green;
     color:white;
     width:fit-content;
+    padding:0px;
+    margin:0px;
     
 }
 .number-corr, .current{
@@ -155,6 +156,9 @@ h3{
         
         background-color: red;
         color:white;
+        width:fit-content;
+        padding:0px;
+        margin:0px;
         
         
         

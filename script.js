@@ -80,13 +80,13 @@ function correct(score){
 //Show user they got answer wrong and show the right answer
 function incorrect(){
     //Add text by wrong answer radio button
-    $("input[name='answer']:checked").after("<span class='wrong'> Sorry, that was incorrect</span>");
+    $("input[name='answer']:checked").before("<p class='wrong'> Sorry, that was incorrect</p>");
     //Get correct answer
     let index = parseInt($('.question-field').data('question-index'));
     let correctAnswer = QUIZ[index].correct;
     //Highlight correct answer
     $(`input[name='answer'][value='${correctAnswer}']`).closest('div').addClass('correct-answer');
-    $(`input[name='answer'][value='${correctAnswer}']`).after(" <span class='correct'>This is the answer</span>");
+    $(`input[name='answer'][value='${correctAnswer}']`).before(" <p class='correct'>This is the answer</p>");
 
 }
 
