@@ -38,7 +38,7 @@ function generateQuestionsHTML(index, currentQ, score, question, arr, answersHTM
         <p class="arr-box">${arr}</p>
         <p class="end"><button class="end">View Results</button></p>
         
-        <section class="answers-container">${answersHTML}<button class="next">Next </button>
+        <section class="answers-container">${answersHTML}<button class="next">Next</button>
      <input type="submit" class="answer-button"></section></fieldset>`
     return questionHTML;
 }
@@ -71,7 +71,7 @@ function correct(score){
     //Add class correct-answer to highlight answer in green
     $("input[name='answer']:checked").closest('div').addClass('correct-answer');
     //Add text beside input button of answer to show it was correct
-    $("input[name='answer']:checked").after("<span class='correct'>Correct!</span>")
+    $("input[name='answer']:checked").before("<p class='correct'>Correct!</p>")
     //Update current score and on UI and in 
     $(".number-corr").text(`Number Correct: ${score}`)
     $(".number-corr").data('score', score);
