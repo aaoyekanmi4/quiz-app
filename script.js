@@ -1,13 +1,19 @@
+ //Indices of wrongly answered questioned. Used to dipslay helpful links at the end
+ let questionsWrong = [];
+
 //Start Quiz by clicking Start button 
 function startQuiz(){
+    
     $('body').on('click', '.start', function () {
-    //Change any previously correct answers from true to false
-    QUIZ.forEach(question => question.gotRight = false);
+   
     //Hide .start-quiz section or .end-quiz section
     $(".start-quiz, .end-quiz").hide();
     //Show question area
     $(".quiz-content").show();
-  
+     questionsWrong = [];
+   
+
+   
     //Show the first question
     displayQuestion();
  });
@@ -102,6 +108,8 @@ function incorrect(){
 
 }
 
+
+
 //Check to see if an answer is correct or incorrect
 function checkAnswer(checkedAnswer){      
     let index = parseInt($('.question-field').data('question-index'));
@@ -111,13 +119,13 @@ function checkAnswer(checkedAnswer){
     
    console.log(checkedAnswer);
     if (checkedAnswer === correctAnswer){
-        //Set gotRight attribute to true in QUIZ.
-        QUIZ[index].gotRight = true;
+     
+       
            
         correct(score);
     }
     else {
-            
+        questionsWrong.push(index);
         incorrect();
     }
   
@@ -125,6 +133,7 @@ function checkAnswer(checkedAnswer){
 
 //Check to see if quiz is over
 function isItOver(){
+    event.preventDefault();
     //Get current index, score, and index of last question
     let index = parseInt($('.question-field').data('question-index'));
     let score = $(".number-corr").data('score');
@@ -143,6 +152,8 @@ function isItOver(){
     }
     //Move to next question
     else {
+           //Turn click listener off for submitting form
+    $("form").off('submit',  handleSubmission);
         $(".answer-button").hide();
         $(".next").show();
         nextQuestion();
@@ -176,14 +187,14 @@ function handleSubmission() {
 //Display next question in QUIZ
 function goToNext () {
     //Increment index of QUIZ
+   
     let index =parseInt($('.question-field').data('question-index'));
     index ++;
     //Get score to display on next screen
     let score = $(".number-corr").data('score');
     //Hide the "Next Button"
     $(".next").hide();
-    //Turn click listener off for submitting form
-    $("form").off('submit',  handleSubmission);
+ 
     //Display the next question in QUIZ
     displayQuestion(index, score);
 }
@@ -197,11 +208,9 @@ function nextQuestion(){
 function generateEndHtml(score, endMessage){
       //Generate list of links for user to view for questions missed
       let links = "";
-      for (question of QUIZ) {
-          if (question.gotRight ===false){
-        links += `<li class="review-topic"><a target ="_blank" href='${question.documentation}'>${question.topic}</a><li>`;
-      }
-     }
+    questionsWrong.map(index =>
+        links += `<li class="review-topic"><a target ="_blank" href='${QUIZ[index].documentation}'>${QUIZ[index].topic}</a><li>`);
+     
     let endHTML = `
         <h1> Thanks for Taking the Quiz</h1> 
         <br>
@@ -260,7 +269,7 @@ function endQuiz(){
 //Run the quiz 
 function handleQuiz() {
  startQuiz();
- endQuiz();
+
  nextQuestion();
  
 }
