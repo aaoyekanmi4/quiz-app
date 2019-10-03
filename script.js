@@ -94,7 +94,8 @@ function incorrect(){
     $("input[name='answer']:checked").before("<p class='wrong'> Sorry, that was incorrect</p>");
     //Get correct answer
     let index = parseInt($('.question-field').data('question-index'));
-    let correctAnswer = QUIZ[index].correct;
+    let correctIndex= QUIZ[index].correctIndex;
+    let correctAnswer = QUIZ[index].answers[correctIndex];
     //Highlight correct answer
     $(`input[name='answer'][value='${correctAnswer}']`).closest('div').addClass('correct-answer');
     $(`input[name='answer'][value='${correctAnswer}']`).before(" <p class='correct'>This is the answer</p>");
@@ -105,7 +106,8 @@ function incorrect(){
 function checkAnswer(checkedAnswer){      
     let index = parseInt($('.question-field').data('question-index'));
     let score = $(".number-corr").data('score'); 
-    let correctAnswer = QUIZ[index].correct;
+    let correctIndex= QUIZ[index].correctIndex;
+    let correctAnswer = QUIZ[index].answers[correctIndex];
     
    console.log(checkedAnswer);
     if (checkedAnswer === correctAnswer){
