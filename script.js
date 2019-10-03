@@ -21,12 +21,12 @@ function startQuiz(){
 
 //Generate HTML list items out of answers and return the HTML string
 function generateAnswersHTML (answers){
-    let answersHTMLArr = answers.map(answer => 
-    `<code class="answer ">
-        <input type="radio" name="answer"  id ="${answer}" value="${answer}" required>
+    let answersHTMLArr = answers.map((answer, index) => 
+    `<div class="answer ">
+        <input type="radio" name="answer"  id ="${index}" value="${answer}" required>
        
-        <label for="${answer}">${answer}</label>
-    </code>`);
+        <label for="${index}"><code>${answer}</code></label>
+    </div>`);
 
     //For styling JS code
     $('code').addClass('prettyprint lang-js prettyprinted');
@@ -43,14 +43,14 @@ function generateQuestionsHTML(index, currentQ, score, question, arr, answersHTM
      
     <fieldset class="question-field" data-question-index="${index}" >
         
-       <p class="current">Question ${currentQ} of ${QUIZ.length}</p>
+       <h4 class="current">Question ${currentQ} of ${QUIZ.length}</h4>
         <span class="number-corr" data-score = "${score}" >Score: ${score}</span>
         
-        <legend class="question">${question}</legend>
-        <p class="arr-box"></p>
+        <p class="question">${question}</p>
+        <p class="arr-box"><code class="question-content" ></code></p>
         <p class="end"><button class="end">View Results</button></p>
         
-        <section class="answers-container"></section><button class="next">Next</button>
+        <section class="answers-container"><h2 class="section-title"></h2></section><button class="next">Next</button>
      <input type="submit" class="answer-button"></fieldset>`
     
     return questionHTML;
@@ -77,7 +77,7 @@ function displayQuestion(index =0, score=0){
     $("form").html(questionHTML);
     //Put answers and code-content in styles
     $(".answers-container").html(PR.prettyPrintOne(answersHTML, 'js'));
-    $(".arr-box").html(PR.prettyPrintOne(arr, 'js'));
+    $(".question-content").html(PR.prettyPrintOne(arr, 'js'));
  
 };
 

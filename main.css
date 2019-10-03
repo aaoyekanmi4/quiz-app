@@ -10,7 +10,7 @@
     margin-left: auto;
     margin-right: auto;
 }
-legend {
+.question{
         float: left;
         width: 100%;
         text-align:center;
@@ -19,7 +19,11 @@ legend {
 .question-field {
     border: none;
 }
-    
+
+
+.section-title{
+    display:none;
+}  
 
 html{
     background-image: linear-gradient(gray, lightgrey);
@@ -238,9 +242,10 @@ h3{
     .quiz-content{
         height:500px;
     }
-   legend{
-       font-size:22px;
-   }
+  .question {
+    font-size:22px;
+}
+  
 
     .answer{
         border:1px solid #1dd4cb;
