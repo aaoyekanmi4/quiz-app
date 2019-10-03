@@ -49,8 +49,7 @@ const QUIZ = [{
                 ], 
               correctIndex: 3,
               documentation:"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of",
-              topic: "for ...of", 
-              endScore:0}
+              topic: "for ...of"}
             
               
 

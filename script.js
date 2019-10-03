@@ -141,7 +141,7 @@ function isItOver(){
     
     //If on last question show "View Results Button" and set final score to current score
     if (index === finalIndex){
-       QUIZ[index].endScore = score;
+  
     //Remove click listener from form
     $("form").off('submit',  handleSubmission);
        $(".end").show();
@@ -236,8 +236,7 @@ function end() {
    
 
     //Get score to display
-   let score =  QUIZ[QUIZ.length-1].endScore;
-
+    let score = $(".number-corr").data('score');
    //Determine ending message based on performance on quiz
    let endMessage;
 
