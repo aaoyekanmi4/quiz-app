@@ -16,11 +16,17 @@ function startQuiz(){
 //Generate HTML list items out of answers and return the HTML string
 function generateAnswersHTML (answers){
     let answersHTMLArr = answers.map(answer => 
-    `<div class="answer ">
+    `<code class="answer ">
         <input type="radio" name="answer"  id ="${answer}" value="${answer}" required>
        
         <label for="${answer}">${answer}</label>
-    </div>`);
+    </code>`);
+
+    //For styling JS code
+    $('code').addClass('prettyprint lang-js prettyprinted');
+    
+    
+
     let answersHTML = answersHTMLArr.join('');
     return answersHTML;
 }
@@ -31,16 +37,18 @@ function generateQuestionsHTML(index, currentQ, score, question, arr, answersHTM
      
     <fieldset class="question-field" data-question-index="${index}" >
         
-        <p class="current">Current:${currentQ} out of ${QUIZ.length}</p>
-        <p class="number-corr" data-score = "${score}" >Number Correct:${score}</p>
+       <p class="current">Question ${currentQ} of ${QUIZ.length}</p>
+        <span class="number-corr" data-score = "${score}" >Score: ${score}</span>
         
         <legend class="question">${question}</legend>
-        <p class="arr-box">${arr}</p>
+        <p class="arr-box"></p>
         <p class="end"><button class="end">View Results</button></p>
         
-        <section class="answers-container">${answersHTML}<button class="next">Next</button>
-     <input type="submit" class="answer-button"></section></fieldset>`
+        <section class="answers-container"></section><button class="next">Next</button>
+     <input type="submit" class="answer-button"></fieldset>`
+    
     return questionHTML;
+   
 }
 
 //Render question to the html page
@@ -59,8 +67,11 @@ function displayQuestion(index =0, score=0){
     let currentQ = index + 1;
     //Use all variables make a question element and append to page
     let questionHTML = generateQuestionsHTML(index, currentQ, score, question, arr, answersHTML);
+    
     $("form").html(questionHTML);
-               
+    //Put answers and code-content in styles
+    $(".answers-container").html(PR.prettyPrintOne(answersHTML, 'js'));
+    $(".arr-box").html(PR.prettyPrintOne(arr, 'js'));
  
 };
 
@@ -73,7 +84,7 @@ function correct(score){
     //Add text beside input button of answer to show it was correct
     $("input[name='answer']:checked").before("<p class='correct'>Correct!</p>")
     //Update current score and on UI and in 
-    $(".number-corr").text(`Number Correct: ${score}`)
+    $(".number-corr").text(`Score: ${score}`)
     $(".number-corr").data('score', score);
 }
 
