@@ -23,9 +23,9 @@ function startQuiz(){
 function generateAnswersHTML (answers){
     let answersHTMLArr = answers.map((answer, index) => 
     `<div class="answer ">
-        <input type="radio" name="answer"  id ="${index}" value="${answer}" required>
+        <div class="answer-content"><input type="radio" name="answer"  id ="${index}" value="${answer}" required>
        
-        <label for="${index}"><code>${answer}</code></label>
+        <label for="${index}"><code>${answer}</code></label></div>
     </div>`);
 
     //For styling JS code
