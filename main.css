@@ -26,7 +26,7 @@
 }  
 
 html{
-    background-image: linear-gradient(gray, lightgrey);
+    background-color:#a9d6d8;
     height:100%;
 }
 h1 {
@@ -100,9 +100,9 @@ button {
     font-size: 22px;
     border-color: steelblue;
     cursor: pointer;
-    left: 70%;
+    float:right;
     position: relative;
-    top: 20px;
+    top: 10px;
     display: none;
     
 }
@@ -230,6 +230,7 @@ h3{
     }
     .end-quiz {
         width:50%;
+        margin-top:5%;
     }
     .quiz{
         width:60%;
@@ -249,7 +250,7 @@ h3{
     
     }
     .quiz-content{
-        height:500px;
+        height:-webkit-fill-available;
         width: 75%;
         padding: 25px 25px 25px 25px;
     
