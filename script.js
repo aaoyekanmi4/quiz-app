@@ -38,7 +38,7 @@ function generateAnswersHTML (answers){
 }
 
 //Generate HTML for a single question at a time
-function generateQuestionsHTML(index, currentQ, score, question, arr, answersHTML){
+function generateQuestionsHTML(index, currentQ, score, question, codeBox, answersHTML){
     let questionHTML = `
      
     <fieldset class="question-field" data-question-index="${index}" >
@@ -68,16 +68,16 @@ function displayQuestion(index =0, score=0){
     let answers = QUIZ[index].answers;
    
     let answersHTML = generateAnswersHTML(answers);
-    let arr = QUIZ[index].arr;
+    let codeBox = QUIZ[index].codeBox;
     let question = QUIZ[index].question;
     let currentQ = index + 1;
     //Use all variables make a question element and append to page
-    let questionHTML = generateQuestionsHTML(index, currentQ, score, question, arr, answersHTML);
+    let questionHTML = generateQuestionsHTML(index, currentQ, score, question, codeBox, answersHTML);
     
     $("form").html(questionHTML);
     //Put answers and code-content in styles
     $(".answers-container").html(PR.prettyPrintOne(answersHTML, 'js'));
-    $(".question-content").html(PR.prettyPrintOne(arr, 'js'));
+    $(".question-content").html(PR.prettyPrintOne(codeBox, 'js'));
  
 };
 
