@@ -87,6 +87,8 @@ function correct(score){
     
     //Add class correct-answer to highlight answer in green
     $("input[name='answer']:checked").closest('div').addClass('correct-answer');
+    $("input[name='answer']:checked").closest('div').css('margin-top', '0');
+    $("input[name='answer']:checked").closest('.answer').css('padding', '0');
     //Add text beside input button of answer to show it was correct
     $("input[name='answer']:checked").before("<p class='correct'>Correct!</p>")
     //Update current score and on UI and in 
@@ -98,6 +100,8 @@ function correct(score){
 function incorrect(){
     //Add text by wrong answer radio button
     $("input[name='answer']:checked").before("<p class='wrong'> Sorry, that was incorrect</p>");
+    $("input[name='answer']:checked").closest('div').css('margin-top', '0');
+    $("input[name='answer']:checked").closest('.answer').css('padding', '0');
     //Get correct answer
     let index = parseInt($('.question-field').data('question-index'));
     let correctIndex= QUIZ[index].correctIndex;
@@ -105,6 +109,8 @@ function incorrect(){
     //Highlight correct answer
     $(`input[name='answer'][value='${correctAnswer}']`).closest('div').addClass('correct-answer');
     $(`input[name='answer'][value='${correctAnswer}']`).before(" <p class='correct'>This is the answer</p>");
+    $(`input[name='answer'][value='${correctAnswer}']`).closest('div').css('margin-top', '0');
+    $(`input[name='answer'][value='${correctAnswer}']`).closest('.answer').css('padding', '0');
 
 }
 
