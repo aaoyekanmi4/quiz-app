@@ -4,7 +4,7 @@ const QUIZ = [{
               answers: ["arr.filter(num => num > 6);", "arr.find(num => num > 6);", "arr.reduce(num => num > 6);", "arr.map(num => num > 6);"], 
               correctIndex: 0, 
               documentation:"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter",
-              topic: "Array.prototype.filter"
+              topic: "Array.prototype.filter()"
               },
               
               {question: "Which method will NOT mutate arr?", 
