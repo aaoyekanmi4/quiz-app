@@ -23,9 +23,9 @@ function startQuiz(){
 function generateAnswersHTML (answers){
     let answersHTMLArr = answers.map((answer, index) => 
     `<div class="answer ">
-        <input type="radio" name="answer"  id ="${index}" value="${answer}" required>
+        <div class="answer-content"><input type="radio" name="answer"  id ="${index}" value="${answer}" required>
        
-        <label for="${index}"><code>${answer}</code></label>
+        <label for="${index}"><code>${answer}</code></label></div>
     </div>`);
 
     //For styling JS code
@@ -38,7 +38,7 @@ function generateAnswersHTML (answers){
 }
 
 //Generate HTML for a single question at a time
-function generateQuestionsHTML(index, currentQ, score, question, arr, answersHTML){
+function generateQuestionsHTML(index, currentQ, score, question, codeBox, answersHTML){
     let questionHTML = `
      
     <fieldset class="question-field" data-question-index="${index}" >
@@ -68,16 +68,16 @@ function displayQuestion(index =0, score=0){
     let answers = QUIZ[index].answers;
    
     let answersHTML = generateAnswersHTML(answers);
-    let arr = QUIZ[index].arr;
+    let codeBox = QUIZ[index].codeBox;
     let question = QUIZ[index].question;
     let currentQ = index + 1;
     //Use all variables make a question element and append to page
-    let questionHTML = generateQuestionsHTML(index, currentQ, score, question, arr, answersHTML);
+    let questionHTML = generateQuestionsHTML(index, currentQ, score, question, codeBox, answersHTML);
     
     $("form").html(questionHTML);
     //Put answers and code-content in styles
     $(".answers-container").html(PR.prettyPrintOne(answersHTML, 'js'));
-    $(".question-content").html(PR.prettyPrintOne(arr, 'js'));
+    $(".question-content").html(PR.prettyPrintOne(codeBox, 'js'));
  
 };
 
@@ -87,6 +87,8 @@ function correct(score){
     
     //Add class correct-answer to highlight answer in green
     $("input[name='answer']:checked").closest('div').addClass('correct-answer');
+    $("input[name='answer']:checked").closest('div').css('margin-top', '0');
+    $("input[name='answer']:checked").closest('.answer').css('padding', '0');
     //Add text beside input button of answer to show it was correct
     $("input[name='answer']:checked").before("<p class='correct'>Correct!</p>")
     //Update current score and on UI and in 
@@ -98,6 +100,8 @@ function correct(score){
 function incorrect(){
     //Add text by wrong answer radio button
     $("input[name='answer']:checked").before("<p class='wrong'> Sorry, that was incorrect</p>");
+    $("input[name='answer']:checked").closest('div').css('margin-top', '0');
+    $("input[name='answer']:checked").closest('.answer').css('padding', '0');
     //Get correct answer
     let index = parseInt($('.question-field').data('question-index'));
     let correctIndex= QUIZ[index].correctIndex;
@@ -105,6 +109,8 @@ function incorrect(){
     //Highlight correct answer
     $(`input[name='answer'][value='${correctAnswer}']`).closest('div').addClass('correct-answer');
     $(`input[name='answer'][value='${correctAnswer}']`).before(" <p class='correct'>This is the answer</p>");
+    $(`input[name='answer'][value='${correctAnswer}']`).closest('div').css('margin-top', '0');
+    $(`input[name='answer'][value='${correctAnswer}']`).closest('.answer').css('padding', '0');
 
 }
 

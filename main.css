@@ -2,6 +2,7 @@
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
 }
+
 .arr-box{
     border:1px solid #1dd4cb;
     width: fit-content;
@@ -26,7 +27,7 @@
 }  
 
 html{
-    background-image: linear-gradient(gray, lightgrey);
+    background-color:#a9d6d8;
     height:100%;
 }
 h1 {
@@ -100,12 +101,14 @@ button {
     font-size: 22px;
     border-color: steelblue;
     cursor: pointer;
-    left: 70%;
+    float:right;
     position: relative;
-    top: 20px;
+    top: 10px;
     display: none;
     
 }
+
+
 li {
     
     padding: 10px;
@@ -114,9 +117,14 @@ a{
 color: #1dd4cb;
     text-decoration: none;
 }
-label {
-   
-    padding-left:55px;
+label{
+    padding-left: 10px;
+}
+
+.answer-content{
+    margin: 0 auto;
+width: 250px;
+margin-top: 20px;
 }
 
 .quiz-content{
@@ -173,15 +181,15 @@ h3{
         width:fit-content;
 
     }
-       
+   
 
-/* .correct-answer{
-    border:4px solid lightgreen;
-    width:100%;
-    padding:0px;
+.correct-answer{
+   
+
+    padding:2px;
     height:85px;
-    box-shadow:10px 10px 30px  rgb(154, 218, 154);  ;  
-} */
+    margin-top:0px;  
+} 
 .answer{
     border:1px solid #1dd4cb;
     width:100%;
@@ -206,17 +214,16 @@ h3{
 .answer-button{
     
     background-color: #d4901d;
-   
     font-size: 22px;
-   color:  #2b2a38;
-   
-   
+    color:  #2b2a38;
     cursor:pointer;
+    float:right;
+    border: 1px solid #2b2a38;
     
-    left:70%;
     position: relative;
     top: 20px;
 }
+
 
 @media (min-width: 860px){
     .start-quiz{
@@ -224,9 +231,13 @@ h3{
     }
     .end-quiz {
         width:50%;
+        margin-top:5%;
     }
     .quiz{
         width:60%;
+    }
+    .answer-button{
+      top:10px;
     }
     .answers-container{
     
@@ -240,7 +251,10 @@ h3{
     
     }
     .quiz-content{
-        height:500px;
+        height:-webkit-fill-available;
+        width: 75%;
+        padding: 25px 25px 25px 25px;
+    
     }
   .question {
     font-size:22px;
@@ -255,6 +269,8 @@ h3{
         
     }
 
+   
+
   
 }
 
@@ -264,9 +280,7 @@ h3{
         bottom: 10px;
 
     }
-    label{
-        padding-left: 10px;
-    }
+
    .start-quiz{
        height:500px;
        text-align:center;
@@ -280,5 +294,5 @@ h3{
     transform: translate(-50%, -50%);
   }
    }
-}
+
 
