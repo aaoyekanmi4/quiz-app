@@ -1,3 +1,5 @@
+//List of questions for the quiz
+
 const QUIZ = [{
               question: "Which iterative method returns an array with values of arr greater than 6?", 
               codeBox: "const arr = [5,6,7,8,9, 10]",
