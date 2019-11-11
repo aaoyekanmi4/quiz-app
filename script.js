@@ -216,7 +216,7 @@ function generateEndHtml(score, endMessage){
       let links = "";
     questionsWrong.map(index =>
         links += `<li class="review-topic"><a target ="_blank" href='${QUIZ[index].documentation}'>${QUIZ[index].topic}</a><li>`);
-     
+    //Ending screen message
     let endHTML = `
         <h1> Thanks for Taking the Quiz</h1> 
         <br>
