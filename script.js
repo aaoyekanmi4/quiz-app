@@ -77,7 +77,12 @@ function displayQuestion(index =0, score=0){
     $("form").html(questionHTML);
     //Put answers and code-content in styles
     $(".answers-container").html(PR.prettyPrintOne(answersHTML, 'js'));
+    if(codeBox){
     $(".question-content").html(PR.prettyPrintOne(codeBox, 'js'));
+    }
+    else {
+        $(".arr-box").hide();
+    }
  
 };
 
@@ -222,6 +227,7 @@ function generateEndHtml(score, endMessage){
         <br>
         <p class="show-score">Your Score: ${score}/${QUIZ.length}</p>
         <p class="end-message">${endMessage}</p>
+        
         <ul class= "review">${links}</review>
         <br>
         <p>Take the quiz again!</p>
@@ -246,10 +252,10 @@ function end() {
    //Determine ending message based on performance on quiz
    let endMessage;
 
-    if (score ===5){
+    if (score ===6){
          endMessage = "Great Job! You got them all right!"
     }
-    else if (score >=3){
+    else if (score >=4){
         endMessage = "Good Job. You didn't miss very many:"
     }
     else {

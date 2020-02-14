@@ -5,8 +5,12 @@
 
 .arr-box{
     border:1px solid #1dd4cb;
+    border-radius:10px;
     width: fit-content;
-    padding: 5px;
+    padding: 10px;
+    background:black;
+   
+    width:fit-content;
     margin-top: 100px;
     margin-left: auto;
     margin-right: auto;
@@ -122,15 +126,19 @@ label{
 }
 
 .answer-content{
-    margin: 0 auto;
-width: 250px;
+    
+width: 100%;
 margin-top: 20px;
+background:black;
+padding:10px;
+border-radius:10px;
+margin:10px 0;
 }
 
 .quiz-content{
     border: 1px solid black;
     width: 100%;
-    height:700px;
+    height:fit-content;
     margin: 0 auto;
     margin-top:10%;
     display:none;
@@ -193,8 +201,8 @@ h3{
 .answer{
     border:1px solid #1dd4cb;
     width:100%;
-    padding:10px;
-    height:85px;
+
+
     
 }
     .wrong{
@@ -219,9 +227,7 @@ h3{
     cursor:pointer;
     float:right;
     border: 1px solid #2b2a38;
-    
-    position: relative;
-    top: 20px;
+    margin:20px 0;
 }
 
 
